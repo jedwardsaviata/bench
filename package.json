@@ -1,0 +1,23 @@
+{
+  "name": "bench",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "coffee bench.coffee"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "durations": "^3.0.0",
+    "log-a-log": "^2.0.0",
+    "moment": "^2.17.0",
+    "numeral": "^1.5.5",
+    "pretty-bytes": "^4.0.2",
+    "stream-meter": "^1.0.4"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.11.1"
+  }
+}
