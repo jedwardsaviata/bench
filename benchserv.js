@@ -35,7 +35,6 @@ function shutdown() {
       console.error(error);
     }
 
-    report();
     process.exit(0);
   });
 }
