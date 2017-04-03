@@ -5,20 +5,28 @@ const bindPort = 1337;
 const bufferSize = 1024 * 1024;
 const buffer = Buffer.alloc(bufferSize);
 
+let nextClientId = 0;
+
 for (let i = 0; i < bufferSize; i++) {
   buffer.write('0', i, 1);
 }
 
 function connectionHandler(socket) {
-  console.log("New client connection");
-  sendMore(socket);
+  clientId = ++nextClientId;
+
+  console.log(`New connection, client ${clientId}`);
+  sendMore(socket, clientId);
 }
 
-function sendMore(socket) {
-  try {
-    socket.write(buffer, undefined, () => sendMore(socket));
-  } catch (error) {
-    console.error("Not sending any more after write error:", error);
+function sendMore(socket, clientId) {
+  if (!socket.destroyed) {
+    try {
+        socket.write(buffer, undefined, () => sendMore(socket, clientId));
+    } catch (error) {
+      console.error(`Not sending any more to client ${clientId} after write error:`, error);
+    }
+  } else {
+    console.log(`Connection closed for client ${clientId}`);
   }
 }
 
