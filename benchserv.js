@@ -41,6 +41,8 @@ function shutdown() {
   server.close(error => {
     if (error) {
       console.error(error);
+    } else {
+      console.log("Server halted.");
     }
 
     process.exit(0);
